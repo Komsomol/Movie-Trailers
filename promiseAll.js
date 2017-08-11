@@ -1,0 +1,109 @@
+// jshint esversion: 6
+
+const got = require('got');
+const fs = require('fs');
+const moment = require('moment');
+
+const channelId = 'UCRX7UEyE8kp35mPrgC2sosA';
+const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
+// const apiKey = process.env.YT_API_KEY;
+
+// const channelName = 'joblomovienetwork';
+
+const checkDateRange = function(ISODate){
+	// today
+	let date = moment().utc().format('YYYY-MM-DD');
+	// console.log("TODAY IS ",date);
+	
+	// 8 days ago
+	let diff = moment(date).subtract(7,'d').format('YYYY-MM-DD');
+	
+	// date we get from API
+	let dateFromAPI = moment(ISODate).utc().format('YYYY-MM-DD');
+	
+	// range
+	let fallsinrange = moment(dateFromAPI).isBetween(diff, date, null, '(]');
+
+	return fallsinrange;
+};
+
+const getter = function(url){
+	return new Promise(function(resolve, reject){
+		got(url)
+		.then(response => {
+			resolve(response.body);
+		})
+		.catch(error => {
+			reject(error);
+		});
+	});
+};
+
+const getChannelID = function(channelName){
+	return new Promise(function(resolve, reject){
+		const channelIdUrl = 'https://www.googleapis.com/youtube/v3/channels?part=id,contentDetails&forUsername='+channelName+'&key='+apiKey+'';
+		getter(channelIdUrl).then(function(response){
+			let data = JSON.parse(response);
+			let channelID = data.items[0].id;
+			let uploadsID = data.items[0].contentDetails.relatedPlaylists.uploads;
+			resolve({channelID, uploadsID});
+		});
+	});
+};
+
+const getVideosFromChannel = function(channelID, uploadsID){
+	return new Promise(function(resolve, reject){
+			const videosurl = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId='+uploadsID+'&&channelId='+channelId+'&key='+apiKey+'';
+			getter(videosurl).then(function(response){
+			let data = JSON.parse(response);
+			resolve(data);
+		});
+	});
+};
+
+// compare titles
+const getTrailersOnly = function(file){
+	// console.log(file.items[0].snippet.title);
+	return new Promise(function(resolve,reject){
+		let videos = [];
+		for (var i = 0; i < file.items.length; i++) {
+			if(file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 ){
+				// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
+				if(checkDateRange(file.items[i].snippet.publishedAt)){
+					// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
+					var obj = {};
+					obj.name = file.items[i].snippet.title;
+					obj.date = moment(file.items[i].snippet.publishedAt).utc().format('YYYY-MM-DD');
+					obj.link = file.items[i].snippet.resourceId.videoId;
+					videos.push(obj);
+				}
+			}
+		}
+		// console.log(videos);
+		resolve(videos);
+	});
+};
+
+
+// console.log(getChannelID(channelName));
+
+const returnResults = function(channelName){
+	return new Promise(function(resolve, reject){
+		getChannelID(channelName).then(function(data){
+			// console.log(data);
+			getVideosFromChannel(data.channelID,data.uploadsID).then(function(videos){
+				// console.log(videos);
+				getTrailersOnly(videos).then(function(results){
+					resolve(results);
+				});
+			});
+		});
+	});
+};
+
+
+// const test = function(test){
+
+// };
+
+module.exports = returnResults;

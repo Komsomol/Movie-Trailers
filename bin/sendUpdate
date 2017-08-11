@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+// jshint esversion: 6
+var date = new Date();
+//fir =5
+console.log("Current Date is ",date.getDay());
+
+var videos = require('../sendVideos.js');
+
+if(date.getDay() === 5){
+	console.log('Today is Friday. Run task');
+	videos();
+} else {
+	console.log('Today is not Friday');
+}
+

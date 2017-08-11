@@ -1,0 +1,22 @@
+{
+  "name": "youtube-channel-watch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "got": "^7.1.0",
+    "json-load": "^1.0.1",
+    "moment": "^2.18.1",
+    "pug": "^2.0.0-rc.2",
+    "sendgrid": "^5.2.0"
+  }
+}

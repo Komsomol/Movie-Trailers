@@ -1,0 +1,40 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #151515;
+	color: #d8d8d8;
+	font-size: 0.9rem;
+}
+
+.flex-container{
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+}
+li {
+	/*padding-bottom: 1.2rem;*/
+	list-style-type: none;
+	/*width:100%;*/
+}
+/*
+
+.embed-container { 
+	position: relative; 
+	padding-bottom: 56.25%; 
+	height: 0; 
+	overflow: hidden; 
+	max-width: 100%; 
+} 
+
+.embed-container iframe, 
+.embed-container object, 
+.embed-container embed { 
+	height: 100%; 
+	position: absolute; 
+	top: 0; left: 0; 
+	width: 100%; 
+}
+*/
