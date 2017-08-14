@@ -13,6 +13,7 @@ include includes/head.pug
 								li
 									h3=item.name
 									p=item.date
+									a(href='https://www.youtube.com/watch?v='+val.link) Link
 									div.embed-container
 								iframe(type='text/html' src='https://www.youtube.com/embed/'+item.link+'?modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&theme=light&color=white"' allowFullScreen='allowFullScreen' frameborder='0')
 
