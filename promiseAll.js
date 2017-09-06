@@ -7,6 +7,7 @@ const moment = require('moment');
 const channelId = 'UCRX7UEyE8kp35mPrgC2sosA';
 const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
 // const apiKey = process.env.YT_API_KEY;
+const debug = true;
 
 // const channelName = 'joblomovienetwork';
 
@@ -16,7 +17,7 @@ const checkDateRange = function(ISODate){
 	// console.log("TODAY IS ",date);
 	
 	// 8 days ago
-	let diff = moment(date).subtract(7,'d').format('YYYY-MM-DD');
+	let diff = moment(date).subtract(10,'d').format('YYYY-MM-DD');
 	
 	// date we get from API
 	let dateFromAPI = moment(ISODate).utc().format('YYYY-MM-DD');
@@ -67,7 +68,7 @@ const getTrailersOnly = function(file){
 	return new Promise(function(resolve,reject){
 		let videos = [];
 		for (var i = 0; i < file.items.length; i++) {
-			if(file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 ){
+			if(file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('tv spot') > -1 ){
 				// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
 				if(checkDateRange(file.items[i].snippet.publishedAt)){
 					// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);

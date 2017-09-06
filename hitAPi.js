@@ -3,6 +3,9 @@
 const channelList = require('./channels');
 const getVideos = require('./promiseAll');
 
+const debug = true;
+
+
 const getAllContent = function(callback){
 	var promises = [];
 
@@ -11,8 +14,8 @@ const getAllContent = function(callback){
 			return new Promise (function(resolve, reject){
 				getVideos(channelURL).then(function(data){
 				// if(data.length > 0){
-					console.log(data);
-					// console.log({channelName, data});
+					// if(debug) console.log(data);
+					if(debug) console.log({channelName, data});
 					var o = {};
 					o.channel = channelName;
 					o.data = data;
@@ -32,16 +35,15 @@ const getAllContent = function(callback){
 	Promise.all(promises).then(function(dataSet) {
 
 		var filter = dataSet.filter(function(item){
-			// console.log(item.data.length);
+			if(debug) console.log(item.data.length);
 			if(item.data.length > 0){
 				return item;
 			}
 		});
 		
 		callback(filter);
-		// console.log(cleanup);
 
-		// console.log(dataSet);
+		if(debug) console.log(dataSet);
 	}, function(err) {
 		// error occurred
 	});
