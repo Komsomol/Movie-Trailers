@@ -5,21 +5,20 @@ const getVideos = require('./promiseAll');
 
 const debug = true;
 
-
 const getAllContent = function(callback){
 	var promises = [];
 
-	const hitAPI = function(channelURL,channelName){
+	const hitAPI = function(channelID,channelName){
 			// var c = [];
 			return new Promise (function(resolve, reject){
-				getVideos(channelURL).then(function(data){
+				getVideos(channelID).then(function(data){
 				// if(data.length > 0){
-					// if(debug) console.log(data);
+					if(debug) console.log(channelName);
 					if(debug) console.log({channelName, data});
 					var o = {};
 					o.channel = channelName;
 					o.data = data;
-
+					if(debug) console.log(o);
 					// c.push(o);
 					resolve(o);
 					// resolve(data,channelName);
@@ -29,13 +28,14 @@ const getAllContent = function(callback){
 	};
 
 	for (var i = 0; i < channelList.length; i++) {
-		promises.push(hitAPI(channelList[i].channelURL, channelList[i].name));
+		// console.log(channelList[i].channelID);
+		promises.push(hitAPI(channelList[i].channelID, channelList[i].name));
 	}
 
 	Promise.all(promises).then(function(dataSet) {
 
 		var filter = dataSet.filter(function(item){
-			if(debug) console.log(item.data.length);
+			// if(debug) console.log(item.data.length);
 			if(item.data.length > 0){
 				return item;
 			}
@@ -43,7 +43,7 @@ const getAllContent = function(callback){
 		
 		callback(filter);
 
-		if(debug) console.log(dataSet);
+		// if(debug) console.log(dataSet);
 	}, function(err) {
 		// error occurred
 	});

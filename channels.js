@@ -89,6 +89,16 @@ const channels =[
 		name: 'Sony Pictures Entertainment',
 		channelURL: 'SonyPictures',
 		channelID: 'UCz97F7dMxBNOfGYu3rx8aCw'
+	},
+	{ 
+		name: 'STX Entertainment',
+		channelURL: 'UCtlp8d4cZg2eMrVbq7vxg9w',
+		channelID: 'UCtlp8d4cZg2eMrVbq7vxg9w'
+	},
+	{ 
+		name: 'Bleeker Street',
+		channelURL: 'UCafnP6JPjVq8AahYaThUelg',
+		channelID: 'UCafnP6JPjVq8AahYaThUelg'
 	}
 ];
 // lets export all these channellsss

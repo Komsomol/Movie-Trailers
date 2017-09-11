@@ -4,18 +4,16 @@ const got = require('got');
 const fs = require('fs');
 const moment = require('moment');
 
+// do not remove. if removed everything explodes?
 const channelId = 'UCRX7UEyE8kp35mPrgC2sosA';
 const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
 // const apiKey = process.env.YT_API_KEY;
 const debug = true;
 
-// const channelName = 'joblomovienetwork';
-
 const checkDateRange = function(ISODate){
 	// today
 	let date = moment().utc().format('YYYY-MM-DD');
 	// console.log("TODAY IS ",date);
-	
 	// 8 days ago
 	let diff = moment(date).subtract(10,'d').format('YYYY-MM-DD');
 	
@@ -40,24 +38,39 @@ const getter = function(url){
 	});
 };
 
-const getChannelID = function(channelName){
+const getChannelDetails = function(channelID){
+	if(debug) console.log("getChannelDetails =>",channelID);
 	return new Promise(function(resolve, reject){
-		const channelIdUrl = 'https://www.googleapis.com/youtube/v3/channels?part=id,contentDetails&forUsername='+channelName+'&key='+apiKey+'';
+		const channelIdUrl ='https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id='+channelID+'&channelId='+channelID+'&key='+apiKey+'';
 		getter(channelIdUrl).then(function(response){
+			// if(debug) console.log(response);
+
+			// console.log(typeof response);
+
 			let data = JSON.parse(response);
+			
+			// console.log(data.items[0].contentDetails.relatedPlaylists.uploads);
+			
 			let channelID = data.items[0].id;
-			let uploadsID = data.items[0].contentDetails.relatedPlaylists.uploads;
-			resolve({channelID, uploadsID});
+			
+			let uploadsURL = data.items[0].contentDetails.relatedPlaylists.uploads;
+
+			// let data = JSON.parse(response);
+			// let channelID = data.items[0].id;
+			// let uploadsID = data.items[0].contentDetails.relatedPlaylists.uploads;
+			resolve({channelID, uploadsURL});
 		});
 	});
 };
 
 const getVideosFromChannel = function(channelID, uploadsID){
+	if(debug) console.log("getVideosFromChannel =>", channelID, uploadsID);
 	return new Promise(function(resolve, reject){
 			const videosurl = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId='+uploadsID+'&&channelId='+channelId+'&key='+apiKey+'';
 			getter(videosurl).then(function(response){
-			let data = JSON.parse(response);
-			resolve(data);
+				// if(debug)console.log(response);
+				let data = JSON.parse(response);
+				resolve(data);
 		});
 	});
 };
@@ -80,19 +93,20 @@ const getTrailersOnly = function(file){
 				}
 			}
 		}
-		// console.log(videos);
+		console.log(videos);
 		resolve(videos);
 	});
 };
 
 
-// console.log(getChannelID(channelName));
+// console.log(getChannelDetails(channelName));
 
-const returnResults = function(channelName){
+const returnResults = function(channelID){
+	console.log("returnResults =>",channelID);
 	return new Promise(function(resolve, reject){
-		getChannelID(channelName).then(function(data){
-			// console.log(data);
-			getVideosFromChannel(data.channelID,data.uploadsID).then(function(videos){
+		getChannelDetails(channelID).then(function(data){
+			console.log(data);
+			getVideosFromChannel(data.channelID,data.uploadsURL).then(function(videos){
 				// console.log(videos);
 				getTrailersOnly(videos).then(function(results){
 					resolve(results);
@@ -106,5 +120,8 @@ const returnResults = function(channelName){
 // const test = function(test){
 
 // };
-
+// 
 module.exports = returnResults;
+
+// test function
+// returnResults('UCvC4D8onUfXzvjTOM-dBfEA');
