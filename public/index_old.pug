@@ -1,0 +1,21 @@
+doctype html
+include includes/head.pug
+	html
+		head
+			title='Trailers from Channels from 10 days ago'
+		body
+			div.flex-container
+				each val in data
+					div.channel
+						h1=val.channel
+						div.videos
+							each item in val.data
+								li
+									h3=item.name
+									p=item.date
+									a(href='https://www.youtube.com/watch?v='+item.link) Link
+									div.embed-container
+								iframe(type='text/html' src='https://www.youtube.com/embed/'+item.link+'?modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&theme=light&color=white"' allowFullScreen='allowFullScreen' frameborder='0')
+
+
+include includes/footer.pug

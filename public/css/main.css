@@ -29,6 +29,11 @@ li {
 	max-width: 100%; 
 } */
 
+.holder{
+	border: 1px solid;
+    padding: 15px;
+}
+
 iframe { 
     width: 640px;
     height: 340px;

@@ -1,9 +1,9 @@
 //jshint esversion:6
 
 const channelList = require('./channels');
-const getVideos = require('./promiseAll');
+const getVideos = require('./getVideos');
 
-const debug = true;
+const debug = false;
 
 const getAllContent = function(callback){
 	var promises = [];
@@ -13,12 +13,18 @@ const getAllContent = function(callback){
 			return new Promise (function(resolve, reject){
 				getVideos(channelID).then(function(data){
 				// if(data.length > 0){
-					if(debug) console.log(channelName);
-					if(debug) console.log({channelName, data});
+					// if(debug) console.log(channelName);
+					// if(debug) console.log({channelName, data});
+					// console.log(data);
 					var o = {};
-					o.channel = channelName;
-					o.data = data;
-					if(debug) console.log(o);
+					// console.log(data);
+					// o.channel = channelName;
+					// o.date = data.date;
+					// data.channel = channelName;
+					o = data;
+
+
+					// if(debug) console.log(o);
 					// c.push(o);
 					resolve(o);
 					// resolve(data,channelName);
@@ -32,18 +38,22 @@ const getAllContent = function(callback){
 		promises.push(hitAPI(channelList[i].channelID, channelList[i].name));
 	}
 
-	Promise.all(promises).then(function(dataSet) {
+	Promise.all(promises).then(dataSet => {
 
-		var filter = dataSet.filter(function(item){
-			// if(debug) console.log(item.data.length);
-			if(item.data.length > 0){
+		let filter = dataSet.filter(item =>{
+			if(item.length > 0){
 				return item;
 			}
 		});
-		
-		callback(filter);
 
-		// if(debug) console.log(dataSet);
+		let flatten = [].concat.apply([],filter);
+
+		let sorted = flatten.sort((a,b) => { 
+			return b.date - a.date;
+		});
+		
+		callback(sorted);
+
 	}, function(err) {
 		// error occurred
 	});
@@ -51,6 +61,5 @@ const getAllContent = function(callback){
 
 module.exports = getAllContent;
 
-// getAllContent();
 
 

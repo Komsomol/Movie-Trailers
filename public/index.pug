@@ -6,16 +6,15 @@ include includes/head.pug
 		body
 			div.flex-container
 				each val in data
-					div.channel
-						h1=val.channel
-						div.videos
-							each item in val.data
-								li
-									h3=item.name
-									p=item.date
-									a(href='https://www.youtube.com/watch?v='+item.link) Link
-									div.embed-container
-								iframe(type='text/html' src='https://www.youtube.com/embed/'+item.link+'?modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&theme=light&color=white"' allowFullScreen='allowFullScreen' frameborder='0')
+						div.holder
+							li
+								h3=val.name
+								p Posted on 
+									=val.date 
+								p 
+									a(href='https://www.youtube.com/watch?v='+val.link) Link
+								div.embed-container
+									iframe(type='text/html' src='https://www.youtube.com/embed/'+val.link+'?modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&theme=light&color=white"' allowFullScreen='allowFullScreen' frameborder='0')
 
 
 include includes/footer.pug

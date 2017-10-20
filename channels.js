@@ -99,6 +99,11 @@ const channels =[
 		name: 'Bleeker Street',
 		channelURL: 'UCafnP6JPjVq8AahYaThUelg',
 		channelID: 'UCafnP6JPjVq8AahYaThUelg'
+	},
+	{ 
+		name: 'Neon',
+		channelURL: 'UCpy5dRhZd-JbZP4NsrnLt1w',
+		channelID: 'UCpy5dRhZd-JbZP4NsrnLt1w'
 	}
 ];
 // lets export all these channellsss

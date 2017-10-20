@@ -8,7 +8,7 @@ const moment = require('moment');
 const channelId = 'UCRX7UEyE8kp35mPrgC2sosA';
 const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
 // const apiKey = process.env.YT_API_KEY;
-const debug = true;
+const debug = false;
 
 const checkDateRange = function(ISODate){
 	// today
@@ -26,7 +26,7 @@ const checkDateRange = function(ISODate){
 	return fallsinrange;
 };
 
-const getter = function(url){
+const getter = (url) => {
 	return new Promise(function(resolve, reject){
 		got(url)
 		.then(response => {
@@ -38,9 +38,9 @@ const getter = function(url){
 	});
 };
 
-const getChannelDetails = function(channelID){
+const getChannelDetails = channelID => {
 	if(debug) console.log("getChannelDetails =>",channelID);
-	return new Promise(function(resolve, reject){
+	return new Promise((resolve, reject) => {
 		const channelIdUrl ='https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id='+channelID+'&channelId='+channelID+'&key='+apiKey+'';
 		getter(channelIdUrl).then(function(response){
 			// if(debug) console.log(response);
@@ -63,9 +63,9 @@ const getChannelDetails = function(channelID){
 	});
 };
 
-const getVideosFromChannel = function(channelID, uploadsID){
+const getVideosFromChannel = (channelID, uploadsID) =>{
 	if(debug) console.log("getVideosFromChannel =>", channelID, uploadsID);
-	return new Promise(function(resolve, reject){
+	return new Promise((resolve, reject) =>{
 			const videosurl = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId='+uploadsID+'&&channelId='+channelId+'&key='+apiKey+'';
 			getter(videosurl).then(function(response){
 				// if(debug)console.log(response);
@@ -76,24 +76,25 @@ const getVideosFromChannel = function(channelID, uploadsID){
 };
 
 // compare titles
-const getTrailersOnly = function(file){
+const getTrailersOnly = file =>{
 	// console.log(file.items[0].snippet.title);
-	return new Promise(function(resolve,reject){
+	return new Promise((resolve,reject) =>{
 		let videos = [];
 		for (var i = 0; i < file.items.length; i++) {
 			if(file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('tv spot') > -1 ){
-				// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
 				if(checkDateRange(file.items[i].snippet.publishedAt)){
+					// console.log(file.items[i].snippet.thumbnails.high.url);
 					// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
 					var obj = {};
 					obj.name = file.items[i].snippet.title;
-					obj.date = moment(file.items[i].snippet.publishedAt).utc().format('YYYY-MM-DD');
+					obj.date = parseInt(moment(file.items[i].snippet.publishedAt).utc().format('DD'),10);
 					obj.link = file.items[i].snippet.resourceId.videoId;
+					obj.thumbnail = file.items[i].snippet.thumbnails.high.url;
 					videos.push(obj);
 				}
 			}
 		}
-		console.log(videos);
+		// console.log(videos);
 		resolve(videos);
 	});
 };
@@ -102,10 +103,10 @@ const getTrailersOnly = function(file){
 // console.log(getChannelDetails(channelName));
 
 const returnResults = function(channelID){
-	console.log("returnResults =>",channelID);
+	// console.log("returnResults =>",channelID);
 	return new Promise(function(resolve, reject){
 		getChannelDetails(channelID).then(function(data){
-			console.log(data);
+			// console.log(data);
 			getVideosFromChannel(data.channelID,data.uploadsURL).then(function(videos){
 				// console.log(videos);
 				getTrailersOnly(videos).then(function(results){
