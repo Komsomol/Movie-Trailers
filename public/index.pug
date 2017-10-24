@@ -9,9 +9,9 @@ include includes/head.pug
 						div.holder
 							li
 								h3=val.name
-								p Posted on 
-									=val.date 
-								p 
+								p Posted on
+									= ' ' + val.dateString
+								p
 									a(href='https://www.youtube.com/watch?v='+val.link) Link
 								div.embed-container
 									iframe(type='text/html' src='https://www.youtube.com/embed/'+val.link+'?modestbranding=1&iv_load_policy=3&rel=0&showinfo=0&theme=light&color=white"' allowFullScreen='allowFullScreen' frameborder='0')

@@ -16,10 +16,10 @@ const checkDateRange = function(ISODate){
 	// console.log("TODAY IS ",date);
 	// 8 days ago
 	let diff = moment(date).subtract(10,'d').format('YYYY-MM-DD');
-	
+
 	// date we get from API
 	let dateFromAPI = moment(ISODate).utc().format('YYYY-MM-DD');
-	
+
 	// range
 	let fallsinrange = moment(dateFromAPI).isBetween(diff, date, null, '(]');
 
@@ -48,11 +48,11 @@ const getChannelDetails = channelID => {
 			// console.log(typeof response);
 
 			let data = JSON.parse(response);
-			
+
 			// console.log(data.items[0].contentDetails.relatedPlaylists.uploads);
-			
+
 			let channelID = data.items[0].id;
-			
+
 			let uploadsURL = data.items[0].contentDetails.relatedPlaylists.uploads;
 
 			// let data = JSON.parse(response);
@@ -88,6 +88,7 @@ const getTrailersOnly = file =>{
 					var obj = {};
 					obj.name = file.items[i].snippet.title;
 					obj.date = parseInt(moment(file.items[i].snippet.publishedAt).utc().format('DD'),10);
+					obj.dateString = moment(file.items[i].snippet.publishedAt).utc().format('LLLL');
 					obj.link = file.items[i].snippet.resourceId.videoId;
 					obj.thumbnail = file.items[i].snippet.thumbnails.high.url;
 					videos.push(obj);
@@ -121,7 +122,7 @@ const returnResults = function(channelID){
 // const test = function(test){
 
 // };
-// 
+//
 module.exports = returnResults;
 
 // test function
