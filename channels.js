@@ -109,6 +109,11 @@ const channels =[
 		name: 'A24',
 		channelURL: 'UCuPivVjnfNo4mb3Oog_frZg',
 		channelID: 'UCuPivVjnfNo4mb3Oog_frZg'
+	},
+	{ 
+		name: 'Dogwoof',
+		channelURL: 'UCNruPWfg4GUGw3RcwaKtsXQ',
+		channelID: 'UCNruPWfg4GUGw3RcwaKtsXQ'
 	}
 ];
 // lets export all these channellsss
