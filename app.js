@@ -3,7 +3,7 @@
 // Basic Express set up
 const express = require('express');
 const app = express();
-const getcontent = require('./hitAPi');
+const getcontent = require('./getContent');
 
 // Body parser to recieve JSON data
 const bodyParser = require('body-parser'); 
@@ -24,8 +24,8 @@ app.use(express.static('public'));
 app.get('/',function(req,res){
 	// res.send('Hello!');
 	getcontent(function(data){
-		console.log(data);
-		res.render('index', {  
+		// console.log(data);
+		res.render('index', {
 			data: data
 		});
 	});

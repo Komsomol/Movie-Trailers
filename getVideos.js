@@ -87,8 +87,9 @@ const getTrailersOnly = file =>{
 					// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
 					var obj = {};
 					obj.name = file.items[i].snippet.title;
-					obj.date = parseInt(moment(file.items[i].snippet.publishedAt).utc().format('DD'),10);
-					obj.dateString = moment(file.items[i].snippet.publishedAt).utc().format('LLLL');
+					// obj.date = parseInt(moment(file.items[i].snippet.publishedAt).utc().format('DD'),10);
+					obj.date = moment(file.items[i].snippet.publishedAt).utc().format('LLLL');
+					obj.dateString = moment(file.items[i].snippet.publishedAt).utc();
 					obj.link = file.items[i].snippet.resourceId.videoId;
 					obj.thumbnail = file.items[i].snippet.thumbnails.high.url;
 					videos.push(obj);

@@ -2,6 +2,7 @@
 
 const channelList = require('./channels');
 const getVideos = require('./getVideos');
+const moment = require('moment');
 
 const debug = false;
 
@@ -48,8 +49,13 @@ const getAllContent = function(callback){
 
 		let flatten = [].concat.apply([],filter);
 
+		// date sort using basical number comparison
+		// let sorted = flatten.sort((a,b) => { 
+			// return b.date - a.date;
+		// });
+
 		let sorted = flatten.sort((a,b) => { 
-			return b.date - a.date;
+			return moment.utc(b.dateString).diff(moment.utc(a.dateString));
 		});
 		
 		callback(sorted);
