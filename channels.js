@@ -114,6 +114,11 @@ const channels =[
 		name: 'Dogwoof',
 		channelURL: 'UCNruPWfg4GUGw3RcwaKtsXQ',
 		channelID: 'UCNruPWfg4GUGw3RcwaKtsXQ'
+	},
+	{ 
+		name: 'Universal UK',
+		channelURL: 'UCQLBOKpgXrSj3nPU-YC3K9Q',
+		channelID: 'UCQLBOKpgXrSj3nPU-YC3K9Q'
 	}
 ];
 // lets export all these channellsss

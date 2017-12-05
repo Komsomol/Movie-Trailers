@@ -1,13 +1,11 @@
 // jshint esversion: 6
 
 const got = require('got');
-const fs = require('fs');
 const moment = require('moment');
 
 // do not remove. if removed everything explodes?
-const channelId = 'UCRX7UEyE8kp35mPrgC2sosA';
+let channelId;
 const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
-// const apiKey = process.env.YT_API_KEY;
 const debug = false;
 
 const checkDateRange = function(ISODate){
@@ -43,21 +41,13 @@ const getChannelDetails = channelID => {
 	return new Promise((resolve, reject) => {
 		const channelIdUrl ='https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id='+channelID+'&channelId='+channelID+'&key='+apiKey+'';
 		getter(channelIdUrl).then(function(response){
-			// if(debug) console.log(response);
-
-			// console.log(typeof response);
 
 			let data = JSON.parse(response);
-
-			// console.log(data.items[0].contentDetails.relatedPlaylists.uploads);
 
 			let channelID = data.items[0].id;
 
 			let uploadsURL = data.items[0].contentDetails.relatedPlaylists.uploads;
 
-			// let data = JSON.parse(response);
-			// let channelID = data.items[0].id;
-			// let uploadsID = data.items[0].contentDetails.relatedPlaylists.uploads;
 			resolve({channelID, uploadsURL});
 		});
 	});
@@ -81,19 +71,27 @@ const getTrailersOnly = file =>{
 	return new Promise((resolve,reject) =>{
 		let videos = [];
 		for (var i = 0; i < file.items.length; i++) {
+			// gets any results that have the word trailer, teaser or tv spot
 			if(file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 || file.items[i].snippet.title.toLowerCase().indexOf('tv spot') > -1 ){
-				if(checkDateRange(file.items[i].snippet.publishedAt)){
-					// console.log(file.items[i].snippet.thumbnails.high.url);
-					// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
-					var obj = {};
-					obj.name = file.items[i].snippet.title;
-					// obj.date = parseInt(moment(file.items[i].snippet.publishedAt).utc().format('DD'),10);
-					obj.date = moment(file.items[i].snippet.publishedAt).utc().format('LLLL');
-					obj.dateString = moment(file.items[i].snippet.publishedAt).utc();
-					obj.link = file.items[i].snippet.resourceId.videoId;
-					obj.thumbnail = file.items[i].snippet.thumbnails.high.url;
-					videos.push(obj);
-				}
+					if(checkDateRange(file.items[i].snippet.publishedAt)){
+						// console.log(file.items[i].snippet.thumbnails.high.url);
+						// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
+						if(file.items[i].snippet.title.toLowerCase().indexOf("blu-ray") > -1){
+							// do nothing 
+						} else if (file.items[i].snippet.title.toLowerCase().indexOf("season") > -1){
+							// do nothing
+						} else if (file.items[i].snippet.title.toLowerCase().indexOf("episode") > -1){
+							// do nothing
+						} else {
+							var obj = {};
+							obj.name = file.items[i].snippet.title;
+							obj.date = moment(file.items[i].snippet.publishedAt).utc().format('LLLL');
+							obj.dateString = moment(file.items[i].snippet.publishedAt).utc();
+							obj.link = file.items[i].snippet.resourceId.videoId;
+							obj.thumbnail = file.items[i].snippet.thumbnails.high.url;
+							videos.push(obj);
+						}
+					}
 			}
 		}
 		// console.log(videos);
@@ -102,16 +100,17 @@ const getTrailersOnly = file =>{
 };
 
 
-// console.log(getChannelDetails(channelName));
-
-const returnResults = function(channelID){
-	// console.log("returnResults =>",channelID);
-	return new Promise(function(resolve, reject){
-		getChannelDetails(channelID).then(function(data){
-			// console.log(data);
-			getVideosFromChannel(data.channelID,data.uploadsURL).then(function(videos){
-				// console.log(videos);
-				getTrailersOnly(videos).then(function(results){
+// channelIDs passed in from getContent
+const returnResults = (channelID) =>{
+	// Multiple steps need to take place so I make a promise
+	return new Promise((resolve, reject) =>{
+		// Uses the channelID to return the Uploads endpoint
+		getChannelDetails(channelID).then((data) =>{
+			// Grabs all videos for a channel id, and upload URL
+			getVideosFromChannel(data.channelID,data.uploadsURL).then((videos) =>{
+				// Gets only videos that are 10 days old and are trailer/teaser
+				getTrailersOnly(videos).then((results) =>{
+					// returns this data
 					resolve(results);
 				});
 			});
@@ -120,11 +119,4 @@ const returnResults = function(channelID){
 };
 
 
-// const test = function(test){
-
-// };
-//
 module.exports = returnResults;
-
-// test function
-// returnResults('UCvC4D8onUfXzvjTOM-dBfEA');
