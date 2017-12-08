@@ -119,6 +119,11 @@ const channels =[
 		name: 'Universal UK',
 		channelURL: 'UCQLBOKpgXrSj3nPU-YC3K9Q',
 		channelID: 'UCQLBOKpgXrSj3nPU-YC3K9Q'
+	},
+	{ 
+		name: 'Amazon Studios',
+		channelURL: 'UCyouSlyNTfwX_pnGvlfIL3Q',
+		channelID: 'UCyouSlyNTfwX_pnGvlfIL3Q'
 	}
 ];
 // lets export all these channellsss

@@ -11,7 +11,7 @@ const getAllContent = function(callback){
 	const hitAPI = function(channelID,channelName){
 			// var c = [];
 			return new Promise (function(resolve, reject){
-				getVideos(channelID).then(function(data){
+				getVideos(channelID, channelName).then(function(data){
 					
 					var o = {};
 					
@@ -43,6 +43,7 @@ const getAllContent = function(callback){
 			return moment.utc(b.dateString).diff(moment.utc(a.dateString));
 		});
 		
+		console.log(sorted);
 		callback(sorted);
 
 	}, function(err) {
