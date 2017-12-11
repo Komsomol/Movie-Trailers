@@ -2,7 +2,7 @@
 
 // jshint esversion: 6
 var date = new Date();
-//fir =5
+
 console.log("Current Date is ",date.getDay());
 
 var videos = require('../sendVideos.js');
