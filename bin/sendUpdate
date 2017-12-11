@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 
 // jshint esversion: 6
+// Uses heroku scehduler. To check scheduler call 
+// heroku addons:open scheduler-round-65564
+// in Heroku supported CLI
+
+// Executes operation only on Friday
+
 var date = new Date();
 
-console.log("Current Date is ",date.getDay());
+// console.log("Current Date is ",date.getDay());
 
 var videos = require('../sendVideos.js');
 
