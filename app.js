@@ -1,5 +1,8 @@
 // jshint esversion:6
 
+// env vars
+require('dotenv').config();
+
 // Basic Express set up
 const express = require('express');
 const app = express();

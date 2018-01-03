@@ -2,7 +2,7 @@
 
 const got = require('got');
 const moment = require('moment');
-const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
+const apiKey = YT_API_KEY;
 const debug = true;
 
 const getter = (url) => {

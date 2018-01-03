@@ -12,6 +12,7 @@
   "dependencies": {
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "got": "^7.1.0",
     "json-load": "^1.0.1",
