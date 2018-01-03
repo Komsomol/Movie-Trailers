@@ -124,6 +124,16 @@ const channels =[
 		name: 'Amazon Studios',
 		channelURL: 'UCyouSlyNTfwX_pnGvlfIL3Q',
 		channelID: 'UCyouSlyNTfwX_pnGvlfIL3Q'
+	},
+	{ 
+		name: 'Momentum Pictures',
+		channelURL: 'UCElLRsuDWeYdOT3GgNZAUeQ',
+		channelID: 'UCElLRsuDWeYdOT3GgNZAUeQ'
+	},
+	{ 
+		name: 'Kinolorber',
+		channelURL: 'kinolorber',
+		channelID: 'UCtlPYzQ188v4gHQ5VyikNiw'
 	}
 ];
 // lets export all these channellsss

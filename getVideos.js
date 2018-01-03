@@ -31,6 +31,7 @@ const getter = (url) => {
 			resolve(response.body);
 		})
 		.catch(error => {
+			if(debug) console.log(error);
 			reject(error);
 		});
 	});
@@ -41,7 +42,7 @@ const getChannelDetails = (channelID,channelName) => {
 	return new Promise((resolve, reject) => {
 		const channelIdUrl ='https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id='+channelID+'&channelId='+channelID+'&key='+apiKey+'';
 		getter(channelIdUrl).then(function(response){
-
+			if(debug) console.log(response);
 			let data = JSON.parse(response);
 
 			let channelID = data.items[0].id;
@@ -103,6 +104,7 @@ const getTrailersOnly = (file,channelName) =>{
 
 // channelIDs passed in from getContent
 const returnResults = (channelID, channelName) =>{
+	if (debug) console.log(channelID, channelName)
 	// Multiple steps need to take place so I make a promise
 	return new Promise((resolve, reject) =>{
 		// Uses the channelID to return the Uploads endpoint

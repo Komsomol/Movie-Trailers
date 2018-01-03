@@ -3,7 +3,7 @@
 const channelList = require('./channels'),
 		getVideos = require('./getVideos'),
 		moment = require('moment'),
-		debug = false;
+		debug = true;
 
 const getAllContent = function(callback){
 	var promises = [];
@@ -13,6 +13,8 @@ const getAllContent = function(callback){
 			return new Promise (function(resolve, reject){
 				getVideos(channelID, channelName).then(function(data){
 					
+					if(debug) console.log(channelID, channelName);
+
 					var o = {};
 					
 					o = data;
