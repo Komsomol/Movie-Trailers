@@ -8,15 +8,21 @@ const sendgrid = require('sendgrid')(
 );
 
 const getData = () => {
-
-	getTrailers('joblomovienetwork').then(function(data){
-		
+	getTrailers('joblomovienetwork').then(function(data) {
 		console.log('Data Recieved');
 
 		let str = 'Hi! <br> These are the new trailers from JbloTrailers<br><br>';
 		for (var i = 0; i < data.length; i++) {
 			// console.log(data[i].name + '<br>' + data[i].link + '<br><br>');
-			str += data[i].name + '<br>' + 'Published on: '+data[i].date + '<br>'+ 'https://www.youtube.com/watch?v='+data[i].link + '<br><br>';
+			str +=
+				data[i].name +
+				'<br>' +
+				'Published on: ' +
+				data[i].date +
+				'<br>' +
+				'https://www.youtube.com/watch?v=' +
+				data[i].link +
+				'<br><br>';
 		}
 
 		const helper = require('sendgrid').mail;
@@ -31,18 +37,17 @@ const getData = () => {
 		const request = sg.emptyRequest({
 			method: 'POST',
 			path: '/v3/mail/send',
-			body: mail.toJSON()
+			body: mail.toJSON(),
 		});
 
-		sg.API(request, function (error, response) {
+		sg.API(request, function(error, response) {
 			if (error) {
 				console.log('Error response received');
 			}
-				console.log(response.statusCode);
-				console.log(response.body);
-				console.log(response.headers);
+			console.log(response.statusCode);
+			console.log(response.body);
+			console.log(response.headers);
 		});
-		
 	});
 };
 
