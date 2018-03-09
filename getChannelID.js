@@ -1,5 +1,8 @@
 //jshint esversion:6
 
+// env vars
+require('dotenv').config();
+
 const got = require('got');
 const moment = require('moment');
 const apiKey = process.env.YT_API_KEY;
@@ -31,4 +34,5 @@ const getChannelDetails = (channelID, channelName) => {
 	});
 };
 
-getChannelDetails('Kinolorber', 'kinolorber');
+getChannelDetails('SonyPicturesClassics', 'SonyPicturesClassics');
+

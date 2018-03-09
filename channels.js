@@ -135,6 +135,11 @@ const channels = [
 		channelURL: 'kinolorber',
 		channelID: 'UCtlPYzQ188v4gHQ5VyikNiw',
 	},
+	{
+		name: 'Sony Pictures Classic',
+		channelURL: 'SonyPicturesClassics',
+		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
+	},
 ];
 // lets export all these channellsss
 module.exports = channels;
