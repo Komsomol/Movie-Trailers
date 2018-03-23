@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "pretty":" prettier --single-quote --trailing-comma es5 --use-tabs  --write '*.js' "
+    "pretty": " prettier --single-quote --trailing-comma es5 --use-tabs  --write '*.js' "
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
+    "compression": "^1.7.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "got": "^7.1.0",

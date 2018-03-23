@@ -6,13 +6,14 @@ require('dotenv').config();
 // Basic Express set up
 const express = require('express');
 const app = express();
+const compression = require('compression');
 const getcontent = require('./getContent');
+
+// compress all responses 
+app.use(compression());
 
 // Body parser to recieve JSON data
 const bodyParser = require('body-parser');
-
-// Express Port assignment
-const port = process.env.PORT || 3000;
 
 // Set bodyparsers to allow JSON
 app.set('views', './public');
@@ -34,7 +35,11 @@ app.get('/', function(req, res) {
 	});
 });
 
+// Express Port assignment
+app.set('port',(process.env.PORT || 5000));
+
 // listen on port that was defined
-app.listen(port, function() {
-	console.log('app listening on:', port);
+const server = app.listen( app.get( 'port' ), () => {
+	let port = server.address().port;
+	console.log('Running on port ' + port);
 });
