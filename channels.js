@@ -140,6 +140,21 @@ const channels = [
 		channelURL: 'SonyPicturesClassics',
 		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
 	},
+	{
+		name: 'Blumhouse',
+		channelURL: 'BlumhouseProductions',
+		channelID: 'UCCEfOHkckMXnoZQAjUZsMig',
+	},
+	{
+		name: 'Momentum Pictures',
+		channelURL: 'UCElLRsuDWeYdOT3GgNZAUeQ',
+		channelID: 'UCElLRsuDWeYdOT3GgNZAUeQ',
+	},
+	{
+		name: 'HBO',
+		channelURL: 'UCruD_lL-5fmllpKMSL-yCyQ',
+		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
+	},
 ];
 // lets export all these channellsss
 module.exports = channels;

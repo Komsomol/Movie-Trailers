@@ -3,7 +3,7 @@
 const channelList = require('./channels'),
 	getVideos = require('./getVideos'),
 	moment = require('moment'),
-	debug = true;
+	debug = false;
 
 const getAllContent = function(callback) {
 	var promises = [];
@@ -19,6 +19,9 @@ const getAllContent = function(callback) {
 				o = data;
 
 				resolve(o);
+			}).catch( (error) => {
+				console.log("Error in getAllContent ", channelID, channelName);
+				console.log("Error in getAllContent ", error);
 			});
 		});
 	};
@@ -44,7 +47,7 @@ const getAllContent = function(callback) {
 				return moment.utc(b.dateString).diff(moment.utc(a.dateString));
 			});
 
-			console.log(sorted);
+			// console.log(sorted);
 			callback(sorted);
 		},
 		function(err) {

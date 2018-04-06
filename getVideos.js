@@ -31,7 +31,7 @@ const checkDateRange = function(ISODate) {
 };
 
 const getter = url => {
-	return new Promise(function(resolve, reject) {
+	return new Promise((resolve, reject) => {
 		got(url)
 			.then(response => {
 				resolve(response.body);
@@ -45,6 +45,7 @@ const getter = url => {
 
 const getChannelDetails = (channelID, channelName) => {
 	if (debug) console.log('getChannelDetails =>', channelID);
+	
 	return new Promise((resolve, reject) => {
 		const channelIdUrl =
 			'https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id=' +
@@ -54,7 +55,8 @@ const getChannelDetails = (channelID, channelName) => {
 			'&key=' +
 			apiKey +
 			'';
-		getter(channelIdUrl).then(function(response) {
+	
+		getter(channelIdUrl).then((response) => {
 			if (debug) console.log(response);
 			let data = JSON.parse(response);
 
@@ -63,6 +65,9 @@ const getChannelDetails = (channelID, channelName) => {
 			let uploadsURL = data.items[0].contentDetails.relatedPlaylists.uploads;
 
 			resolve({ channelID, uploadsURL, channelName });
+		}).catch((error) => {
+			console.error("Error channelID ", channelID, channelName);
+			console.error("Error in getChannelDetails / getter ", error);
 		});
 	});
 };
@@ -82,6 +87,9 @@ const getVideosFromChannel = (channelID, uploadsID, channelName) => {
 			// if(debug)console.log(response);
 			let data = JSON.parse(response);
 			resolve(data, channelName);
+		}).catch((error) => {
+			console.log("Error in getVideosFromChannel / getter ", error);
+			console.log("channelID ", channelID, uploadsID, channelName);
 		});
 	});
 };
@@ -93,6 +101,7 @@ const getTrailersOnly = (file, channelName) => {
 		let videos = [];
 		for (var i = 0; i < file.items.length; i++) {
 			// gets any results that have the word trailer, teaser or tv spot
+			// console.log(file.items[i].snippet.title);
 			if (
 				file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 ||
 				file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 ||
@@ -101,17 +110,11 @@ const getTrailersOnly = (file, channelName) => {
 				if (checkDateRange(file.items[i].snippet.publishedAt)) {
 					// console.log(file.items[i].snippet.thumbnails.high.url);
 					// console.log(file.items[i].snippet.title , file.items[i].snippet.publishedAt);
-					if (
-						file.items[i].snippet.title.toLowerCase().indexOf('blu-ray') > -1
-					) {
+					if (file.items[i].snippet.title.toLowerCase().indexOf('blu-ray') > -1) {
 						// do nothing
-					} else if (
-						file.items[i].snippet.title.toLowerCase().indexOf('season') > -1
-					) {
+					} else if (file.items[i].snippet.title.toLowerCase().indexOf('season') > -1) {
 						// do nothing
-					} else if (
-						file.items[i].snippet.title.toLowerCase().indexOf('episode') > -1
-					) {
+					} else if (file.items[i].snippet.title.toLowerCase().indexOf('episode') > -1) {
 						// do nothing
 					} else {
 						var obj = {};

@@ -34,5 +34,5 @@ const getChannelDetails = (channelID, channelName) => {
 	});
 };
 
-getChannelDetails('SonyPicturesClassics', 'SonyPicturesClassics');
+getChannelDetails('HBO', 'HBO');
 
