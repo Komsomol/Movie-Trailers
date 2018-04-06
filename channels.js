@@ -152,8 +152,8 @@ const channels = [
 	},
 	{
 		name: 'HBO',
-		channelURL: 'UCruD_lL-5fmllpKMSL-yCyQ',
-		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
+		channelURL: 'UCVTQuK2CaWaTgSsoNkn5AiQ',
+		channelID: 'UCVTQuK2CaWaTgSsoNkn5AiQ',
 	},
 ];
 // lets export all these channellsss

@@ -101,7 +101,7 @@ const getTrailersOnly = (file, channelName) => {
 		let videos = [];
 		for (var i = 0; i < file.items.length; i++) {
 			// gets any results that have the word trailer, teaser or tv spot
-			// console.log(file.items[i].snippet.title);
+			// console.log(file.items[i].snippet.title, channelName);
 			if (
 				file.items[i].snippet.title.toLowerCase().indexOf('trailer') > -1 ||
 				file.items[i].snippet.title.toLowerCase().indexOf('teaser') > -1 ||
