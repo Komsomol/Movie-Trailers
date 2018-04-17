@@ -155,6 +155,21 @@ const channels = [
 		channelURL: 'UCVTQuK2CaWaTgSsoNkn5AiQ',
 		channelID: 'UCVTQuK2CaWaTgSsoNkn5AiQ',
 	},
+	{
+		name:'Star Wars',
+		channelURL:'UCZGYJFUizSax-yElQaFDp5Q',
+		channelID:'UCZGYJFUizSax-yElQaFDp5Q',
+	},
+	{
+		name:'Gunpowder & Sky',
+		channelURL:'UCB9U0iEZ7mg4ysOkhFqzbAw',
+		channelID:'UCB9U0iEZ7mg4ysOkhFqzbAw',
+	},
+	{
+		name:'The Orchard Movies',
+		channelURL:'UCkML5g9N_azgHB7KQJ5fWLw',
+		channelID:'UCkML5g9N_azgHB7KQJ5fWLw',
+	}
 ];
 // lets export all these channellsss
 module.exports = channels;

@@ -34,5 +34,5 @@ const getChannelDetails = (channelID, channelName) => {
 	});
 };
 
-getChannelDetails('HBO', 'HBO');
+getChannelDetails('starwars', 'starwars');
 
