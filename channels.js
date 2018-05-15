@@ -169,6 +169,11 @@ const channels = [
 		name:'The Orchard Movies',
 		channelURL:'UCkML5g9N_azgHB7KQJ5fWLw',
 		channelID:'UCkML5g9N_azgHB7KQJ5fWLw',
+	},
+	{
+		name:"MarVista Entertainment",
+		channelURL: 'UC9p_Ow_Xnj7cR_xOwVU72-g',
+		channelID: 'UC9p_Ow_Xnj7cR_xOwVU72-g',
 	}
 ];
 // lets export all these channellsss

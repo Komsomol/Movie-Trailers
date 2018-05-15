@@ -34,5 +34,5 @@ const getChannelDetails = (channelID, channelName) => {
 	});
 };
 
-getChannelDetails('starwars', 'starwars');
+getChannelDetails('MarvistaEnt', 'MarvistaEnt');
 
