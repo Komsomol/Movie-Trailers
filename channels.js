@@ -174,6 +174,16 @@ const channels = [
 		name:"MarVista Entertainment",
 		channelURL: 'UC9p_Ow_Xnj7cR_xOwVU72-g',
 		channelID: 'UC9p_Ow_Xnj7cR_xOwVU72-g',
+	},
+	{
+		name:"RoadsideFlix",
+		channelURL:"UCH45phx_o8pNt9PwbjxWhcA",
+		channelID:"UCH45phx_o8pNt9PwbjxWhcA"
+	},
+	{
+		name:"Regatta",
+		channelURL:"UCkQCQhMF5hmR-X1Ij48u6BQ",
+		channelID:"UCkQCQhMF5hmR-X1Ij48u6BQ",
 	}
 ];
 // lets export all these channellsss
