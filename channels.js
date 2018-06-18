@@ -184,6 +184,16 @@ const channels = [
 		name:"Regatta",
 		channelURL:"UCkQCQhMF5hmR-X1Ij48u6BQ",
 		channelID:"UCkQCQhMF5hmR-X1Ij48u6BQ",
+	},
+	{
+		name:"Disney Movie Trailers",
+		channelURL:"UCuaFvcY4MhZY3U43mMt1dYQ",
+		channelID:"UCuaFvcY4MhZY3U43mMt1dYQ",
+	},
+	{
+		name:"Illumination",
+		channelURL:"UCq7OHvWO6Z3u-LztFdrcU-g",
+		channelID:"UCq7OHvWO6Z3u-LztFdrcU-g",
 	}
 ];
 // lets export all these channellsss
