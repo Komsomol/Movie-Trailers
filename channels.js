@@ -75,11 +75,11 @@ const channels = [
 		channelURL: 'UniversalPictures',
 		channelID: 'UCq0OueAsdxH6b8nyAspwViw',
 	},
-	{
-		name: 'The Weinstein Company',
-		channelURL: 'TheWeinsteinCompany',
-		channelID: 'UCdIRIVIc9JMnWzkKFettP8g',
-	},
+	// {
+	// 	name: 'The Weinstein Company',
+	// 	channelURL: 'TheWeinsteinCompany',
+	// 	channelID: 'UCdIRIVIc9JMnWzkKFettP8g',
+	// },
 	{
 		name: 'Disney Pixar',
 		channelURL: 'DisneyPixar',
