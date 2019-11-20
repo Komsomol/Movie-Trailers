@@ -194,6 +194,11 @@ const channels = [
 		name:"Illumination",
 		channelURL:"UCq7OHvWO6Z3u-LztFdrcU-g",
 		channelID:"UCq7OHvWO6Z3u-LztFdrcU-g",
+	},
+	{
+		name: "Apple TV",
+		channelURL: "UC1Myj674wRVXB9I4c6Hm5zA",
+		channelID: "UC1Myj674wRVXB9I4c6Hm5zA",
 	}
 ];
 // lets export all these channellsss

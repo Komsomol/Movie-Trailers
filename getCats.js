@@ -1,6 +1,6 @@
 //jshint esversion:6
 
-const got = require('got');
+import got from 'got';
 
 const catURL = 'https://www.reddit.com/r/cats.json';
 
