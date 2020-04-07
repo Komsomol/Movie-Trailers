@@ -5,10 +5,10 @@ const moment = require('moment');
 
 // do not remove. if removed everything explodes?
 let channelId;
-const apiKey = process.env.YT_API_KEY;
-const debug = false;
+const apiKey = 'AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0';
+const debug = true;
 
-const checkDateRange = function(ISODate) {
+const checkDateRange = function (ISODate) {
 	// today
 	let date = moment()
 		.utc()
@@ -45,7 +45,7 @@ const getter = url => {
 
 const getChannelDetails = (channelID, channelName) => {
 	if (debug) console.log('getChannelDetails =>', channelID);
-	
+
 	return new Promise((resolve, reject) => {
 		const channelIdUrl =
 			'https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id=' +
@@ -55,7 +55,7 @@ const getChannelDetails = (channelID, channelName) => {
 			'&key=' +
 			apiKey +
 			'';
-	
+
 		getter(channelIdUrl).then((response) => {
 			if (debug) console.log(response);
 			let data = JSON.parse(response);
@@ -83,7 +83,7 @@ const getVideosFromChannel = (channelID, uploadsID, channelName) => {
 			'&key=' +
 			apiKey +
 			'';
-		getter(videosurl).then(function(response) {
+		getter(videosurl).then(function (response) {
 			// if(debug)console.log(response);
 			let data = JSON.parse(response);
 			resolve(data, channelName);
