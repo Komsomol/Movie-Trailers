@@ -51,4 +51,4 @@ getChannelDetails('DespicableMeMovie', 'DespicableMeMovie');
 
 // https://www.googleapis.com/youtube/v3/channels?id=UCkQCQhMF5hmR-X1Ij48u6BQ&key=AIzaSyBX1pXGaVxOflzPwaQ22vCJEoWu-4rrav0&part=snippet,contentDetails,statistics
 
-https://www.googleapis.com/youtube/v3/channels?id=UCkQCQhMF5hmR-X1Ij48u6BQ&key=AIzaSyAUBdvQzdKVOvOT9w33zK5Y7YwNxKFl9Lc&part=snippet,contentDetails,statistics
+// https://www.googleapis.com/youtube/v3/channels?id=UCkQCQhMF5hmR-X1Ij48u6BQ&key=AIzaSyAUBdvQzdKVOvOT9w33zK5Y7YwNxKFl9Lc&part=snippet,contentDetails,statistics

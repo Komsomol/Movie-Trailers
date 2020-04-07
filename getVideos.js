@@ -5,7 +5,7 @@ const moment = require('moment');
 
 // do not remove. if removed everything explodes?
 let channelId;
-const apiKey = 'AIzaSyDTrFXUFbICmsiQyLW63bi3yHvm0QwhMeE';
+const apiKey = 'AIzaSyCyiM0lihIfRxElG1Z5rUqXNGTQxUzltjo';
 const debug = true;
 
 const checkDateRange = function (ISODate) {
