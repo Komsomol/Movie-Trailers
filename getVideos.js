@@ -1,11 +1,11 @@
 // jshint esversion: 6
-
+require('dotenv').config();
 const got = require('got');
 const moment = require('moment');
 
 // do not remove. if removed everything explodes?
 let channelId;
-const apiKey = 'AIzaSyCyiM0lihIfRxElG1Z5rUqXNGTQxUzltjo';
+const apiKey = 'AIzaSyAQjQCIyrGjS3fvik-erngVcrcjynR5jXw';
 const debug = true;
 
 const checkDateRange = function (ISODate) {
