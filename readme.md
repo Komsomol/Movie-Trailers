@@ -15,3 +15,6 @@ Read channel IDs manually using.
 Local development=> Use .env file with YT_API_KEY=<<KEY HERE>>
 Heroku => Check VARs using ``heroku config``
  
+## Google Console URL
+Sunny Atrium
+``https://console.developers.google.com/apis/credentials?project=sunny-atrium-256211``
