@@ -17,8 +17,12 @@ Heroku => Check VARs using ``heroku config``
 
 ## API restrictions:
 URL = https://tommytrailers.herokuapp.com/
-Localhost = http
+Localhost = http://localhost:5000
 
 ## Google Console URL
 Sunny Atrium
 ``https://console.developers.google.com/apis/credentials?project=sunny-atrium-256211``
+
+## Quota
+CHeck if the app is over Quota limi of 10,000
+``https://console.cloud.google.com/iam-admin/quotas?pli=1&project=sunny-atrium-256211&folder=&organizationId=``
