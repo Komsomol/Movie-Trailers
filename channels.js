@@ -199,6 +199,11 @@ const channels = [
 		name: "Apple TV",
 		channelURL: "UC1Myj674wRVXB9I4c6Hm5zA",
 		channelID: "UC1Myj674wRVXB9I4c6Hm5zA",
+	},
+	{
+		name: "Briarcliff Entertainment",
+		channelURL: "UCfnXpb2MPBULONuZCyaKgmA",
+		channelID: "UCfnXpb2MPBULONuZCyaKgmA",
 	}
 ];
 // lets export all these channellsss
