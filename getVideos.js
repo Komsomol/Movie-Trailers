@@ -4,9 +4,9 @@ const got = require('got');
 const moment = require('moment');
 
 // do not remove. if removed everything explodes?
-let channelId;
+// let channelId;
 const apiKey = process.env.YT_API_KEY;
-const debug = true;
+const debug = false;
 
 const checkDateRange = function (ISODate) {
 	// today
@@ -78,8 +78,8 @@ const getVideosFromChannel = (channelID, uploadsID, channelName) => {
 		const videosurl =
 			'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=' +
 			uploadsID +
-			'&&channelId=' +
-			channelId +
+			'&channelId=' +
+			channelID +
 			'&key=' +
 			apiKey +
 			'';
@@ -90,6 +90,7 @@ const getVideosFromChannel = (channelID, uploadsID, channelName) => {
 		}).catch((error) => {
 			console.log("Error in getVideosFromChannel / getter ", error);
 			console.log("channelID ", channelID, uploadsID, channelName);
+			console.log("URL Called=> ", videosurl);
 		});
 	});
 };

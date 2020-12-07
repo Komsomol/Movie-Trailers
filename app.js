@@ -25,7 +25,7 @@ app.use(express.static('public'));
 app.get('/', function(req, res) {
 	// res.send('Hello!');
 	getcontent(function(data) {
-		// console.log(data);
+		console.log(data);
 		res.render('index', {
 			data: data,
 		});
