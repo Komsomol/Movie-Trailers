@@ -5,7 +5,7 @@ const moment = require('moment');
 
 // do not remove. if removed everything explodes?
 let channelId;
-const apiKey = 'AIzaSyAQjQCIyrGjS3fvik-erngVcrcjynR5jXw';
+const apiKey = process.env.YT_API_KEY;
 const debug = true;
 
 const checkDateRange = function (ISODate) {
