@@ -6,12 +6,12 @@
 4. Any videos with blu-ray, season or episode are discarded.
 5. Videos are then displayed using pug rendered on express server.
 
-##Channel IDs
+## Channel IDs
 Channel.js uses channel IDs to skip the step of getting a channel id.
 Read channel IDs manually using.
-https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=${username}&key=${key}`
+```https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=$<username}&key=${key}```
 
-##YT API Key:
+## YT API Key:
 Local development=> Use .env file with YT_API_KEY=<<KEY HERE>>
 Heroku => Check VARs using ``heroku config``
  
