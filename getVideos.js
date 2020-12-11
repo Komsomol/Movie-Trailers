@@ -37,15 +37,15 @@ const getter = url => {
 				resolve(response.body);
 			})
 			.catch(error => {
-				if (debug) console.log(error);
+				//if (debug) console.log(error);
 				reject(error);
+				return;
 			});
 	});
 };
 
 const getChannelDetails = (channelID, channelName) => {
-	if (debug) console.log('getChannelDetails =>', channelID);
-
+	// if (debug) console.log('getChannelDetails =>', channelID);
 	return new Promise((resolve, reject) => {
 		const channelIdUrl =
 			'https://www.googleapis.com/youtube/v3/channels?part=snippet,contentDetails&id=' +
@@ -66,8 +66,10 @@ const getChannelDetails = (channelID, channelName) => {
 
 			resolve({ channelID, uploadsURL, channelName });
 		}).catch((error) => {
-			console.error("Error channelID ", channelID, channelName);
-			console.error("Error in getChannelDetails / getter ", error);
+			// let err = JSON.parse(error);
+			console.error(error);
+			reject(error);
+			return;
 		});
 	});
 };
@@ -88,9 +90,11 @@ const getVideosFromChannel = (channelID, uploadsID, channelName) => {
 			let data = JSON.parse(response);
 			resolve(data, channelName);
 		}).catch((error) => {
-			console.log("Error in getVideosFromChannel / getter ", error);
-			console.log("channelID ", channelID, uploadsID, channelName);
-			console.log("URL Called=> ", videosurl);
+			// console.log("Error in getVideosFromChannel / getter ", error);
+			// console.log("channelID ", channelID, uploadsID, channelName);
+			// console.log("URL Called=> ", videosurl);
+			reject(error);
+			return;
 		});
 	});
 };
@@ -153,7 +157,13 @@ const returnResults = (channelID, channelName) => {
 						resolve(results);
 					});
 				}
-			);
+			).catch((error)=>{
+				reject(error);
+				return;
+			});
+		}).catch((error)=>{
+			reject(error);
+			return;
 		});
 	});
 };

@@ -22,14 +22,40 @@ app.use(bodyParser.json());
 // serve files from the static directory /public
 app.use(express.static('public'));
 
-app.get('/', function(req, res) {
+// app.get('/', function(req, res) {
+// 	// res.send('Hello!');
+// 	getcontent(function(data) {
+// 		console.log(data);
+// 		res.render('index', {
+// 			data: data,
+// 		});
+// 	});
+// });
+
+app.get('/', (req, res) => {
 	// res.send('Hello!');
-	getcontent(function(data) {
-		console.log(data);
+	// try {
+	// 	getcontent(function (data) {
+	// 		console.log(data);
+	// 	});
+	// } catch (err) {
+	// 	console.log(err);
+	// 	res.status(401).json({error: "Bad login", err:err})
+	// }
+	
+	getcontent().then(data =>{
 		res.render('index', {
 			data: data,
 		});
+	}).catch( (e)=>{
+		res.status(500).json({ error: 'message', log: e })
 	});
+});
+
+
+app.get('/error', (req, res) => {
+	// res.send('Hello!');
+	
 });
 
 // Express Port assignment
@@ -38,5 +64,5 @@ app.set('port',(process.env.PORT || 5000));
 // listen on port that was defined
 const server = app.listen( app.get( 'port' ), () => {
 	let port = server.address().port;
-	console.log('Running on port ' + port);
+	console.log(`Running on port  http://localhost:${port}`);
 });
