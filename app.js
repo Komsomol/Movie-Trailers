@@ -1,68 +1,46 @@
-// jshint esversion:6
-
 // Basic Express set up
-const express = require('express');
+const express = require("express");
 const app = express();
-const compression = require('compression');
-const getcontent = require('./getContent');
+const compression = require("compression");
+const getcontent = require("./getContent");
 
-// compress all responses 
+// compress all responses
 app.use(compression());
 
 // Body parser to recieve JSON data
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // Set bodyparsers to allow JSON
-app.set('views', './public');
-app.set('view engine', 'pug');
+app.set("views", "./public");
+app.set("view engine", "pug");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // serve files from the static directory /public
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-// app.get('/', function(req, res) {
-// 	// res.send('Hello!');
-// 	getcontent(function(data) {
-// 		console.log(data);
-// 		res.render('index', {
-// 			data: data,
-// 		});
-// 	});
-// });
-
-app.get('/', (req, res) => {
-	// res.send('Hello!');
-	// try {
-	// 	getcontent(function (data) {
-	// 		console.log(data);
-	// 	});
-	// } catch (err) {
-	// 	console.log(err);
-	// 	res.status(401).json({error: "Bad login", err:err})
-	// }
-	
-	getcontent().then(data =>{
-		res.render('index', {
-			data: data,
-		});
-	}).catch( (e)=>{
-		res.status(500).json({ error: 'message', log: e })
-	});
+app.get("/", (req, res) => {
+  getcontent()
+    .then((data) => {
+      res.render("index", {
+        data: data,
+      });
+    })
+    .catch((e) => {
+      res.status(500).json({ error: "message", log: e });
+    });
 });
 
-
-app.get('/error', (req, res) => {
-	// res.send('Hello!');
-	
+app.get("/error", (req, res) => {
+  // res.send('Hello!');
 });
 
 // Express Port assignment
-app.set('port',(process.env.PORT || 5000));
+app.set("port", process.env.PORT || 5000);
 
 // listen on port that was defined
-const server = app.listen( app.get( 'port' ), () => {
-	let port = server.address().port;
-	console.log(`Running on port  http://localhost:${port}`);
+const server = app.listen(app.get("port"), () => {
+  let port = server.address().port;
+  console.log(`Running on port  http://localhost:${port}`);
 });
