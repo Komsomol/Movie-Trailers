@@ -122,7 +122,7 @@ const channels = [
 	},
 	{
 		name: 'Amazon Studios',
-		channelURL: 'UCyouSlyNTfwX_pnGvlfIL3Q',
+		channelURL: 'v',
 		channelID: 'UCyouSlyNTfwX_pnGvlfIL3Q',
 	},
 	{

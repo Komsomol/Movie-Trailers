@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "NODE_ENV=production node app.js",
     "pretty": " prettier --single-quote --trailing-comma es5 --use-tabs  --write '*.js' "
   },
   "author": "",
@@ -19,9 +19,8 @@
     "json-load": "^1.0.1",
     "moment": "^2.19.3",
     "node-fetch": "^2.6.1",
+    "pm2": "^4.5.0",
     "pug": "^3.0.0"
   },
-  "devDependencies": {
-    "prettier": "1.9.2"
-  }
+  "devDependencies": {}
 }

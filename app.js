@@ -32,8 +32,15 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/error", (req, res) => {
+app.get("/api", (req, res) => {
   // res.send('Hello!');
+  getcontent()
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((e) => {
+      res.status(500).json({ error: "message", log: e });
+    });
 });
 
 // Express Port assignment
