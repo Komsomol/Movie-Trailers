@@ -75,11 +75,6 @@ const channels = [
 		channelURL: 'UniversalPictures',
 		channelID: 'UCq0OueAsdxH6b8nyAspwViw',
 	},
-	// {
-	// 	name: 'The Weinstein Company',
-	// 	channelURL: 'TheWeinsteinCompany',
-	// 	channelID: 'UCdIRIVIc9JMnWzkKFettP8g',
-	// },
 	{
 		name: 'Disney Pixar',
 		channelURL: 'DisneyPixar',
@@ -204,7 +199,43 @@ const channels = [
 		name: "Briarcliff Entertainment",
 		channelURL: "UCfnXpb2MPBULONuZCyaKgmA",
 		channelID: "UCfnXpb2MPBULONuZCyaKgmA",
+	},
+	{
+		name: 'Cranked Up Films',
+		channelURL: 'CrankedUpFilms',
+		channelID: 'UCTdIZ-HAhxXqYTz7bQGftQA',
+	},
+	{
+		name: 'Gravitas Ventures',
+		channelURL: 'UCO7rKYuE7EMHYFcwP-obqhg',
+		channelID: 'UCO7rKYuE7EMHYFcwP-obqhg',
+	},
+	{
+		name: 'AXISPACIFIC FILMWORKS',
+		channelURL: 'UCTGQ6ucv6XMUSo98H6z2Zew',
+		channelID: 'UCTGQ6ucv6XMUSo98H6z2Zew',
+	},	
+	{
+		name: 'RLJE Films',
+		channelURL: 'UC7QRIwDb8shSnZE8XB0lx4A',
+		channelID: 'UC7QRIwDb8shSnZE8XB0lx4A',
+	},	
+	{
+		name: 'Participant',
+		channelURL: 'ParticipantMedia',
+		channelID: 'UCaqPIODQHO1PsNLrfi-ejEA',
+	},	
+	{
+		name: 'Film Movement',
+		channelURL: 'UCk7fo5zbnRRGUu-FfvLIyag',
+		channelID: 'UCk7fo5zbnRRGUu-FfvLIyag',
+	},	
+	{
+		name: 'Sony Pictures Classics',
+		channelURL: 'SonyPicturesClassics',
+		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
 	}
+	
 ];
 // lets export all these channellsss
 module.exports = channels;
