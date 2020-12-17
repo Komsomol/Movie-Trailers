@@ -7,7 +7,8 @@ const getcontent = require("./getContent");
 
 // compress all responses
 app.use(compression());
-app.use(cors());
+// use it before all route definitions
+app.use(cors({origin: 'http://localhost:3000'}));
 // Body parser to recieve JSON data
 const bodyParser = require("body-parser");
 
@@ -44,12 +45,7 @@ app.get("/", (req, res) => {
 //     });
 // });
 
-var corsOptions = {
-  origin: 'http://localhost:3000/',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-app.get("/api", cors(corsOptions), (req, res) => {
+app.get("/api", cors(), (req, res) => {
   // res.send('Hello!');
   getcontent()
     .then((data) => {
