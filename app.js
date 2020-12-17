@@ -7,7 +7,7 @@ const getcontent = require("./getContent");
 
 // compress all responses
 app.use(compression());
-
+app.use(cors());
 // Body parser to recieve JSON data
 const bodyParser = require("body-parser");
 
