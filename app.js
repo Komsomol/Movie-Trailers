@@ -3,8 +3,8 @@ const express = require("express");
 var cors = require('cors');
 const app = express();
 const compression = require("compression");
-const getcontent = require("./getContent");
 
+const routes = require("./routes/routes");
 // compress all responses
 app.use(compression());
 // use it before all route definitions
@@ -22,39 +22,8 @@ app.use(bodyParser.json());
 // serve files from the static directory /public
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  getcontent()
-    .then((data) => {
-      res.render("index", {
-        data: data,
-      });
-    })
-    .catch((e) => {
-      res.status(500).json({ error: "message", log: e });
-    });
-});
-
-// app.get("/api", (req, res) => {
-//   // res.send('Hello!');
-//   getcontent()
-//     .then((data) => {
-//       res.json(data);
-//     })
-//     .catch((e) => {
-//       res.status(500).json({ error: "message", log: e });
-//     });
-// });
-
-app.get("/api", cors(), (req, res) => {
-  // res.send('Hello!');
-  getcontent()
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((e) => {
-      res.status(500).json({ error: "message", log: e });
-    });
-});
+// where all calls will go to 
+app.use('/', routes);
 
 // Express Port assignment
 app.set("port", process.env.PORT || 5000);

@@ -18,7 +18,7 @@ const getChannelDetails = async (channelID, channelName) => {
     let uploadsURL = data.items[0].contentDetails.relatedPlaylists.uploads;
     return { channelID, uploadsURL, channelName };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return error;
   }
 };

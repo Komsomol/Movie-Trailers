@@ -16,7 +16,6 @@ const getData = async (channelID, channelName) => {
     return trailers;
 
   } catch (error) {
-    console.log(error);
     return error;
   }
 };
