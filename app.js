@@ -26,7 +26,7 @@ app.use(express.static("public"));
 app.use('/', routes);
 
 // Express Port assignment
-app.set("port", process.env.PORT || 5000);
+app.set("port", process.env.PORT || 3030);
 
 // listen on port that was defined
 const server = app.listen(app.get("port"), () => {
