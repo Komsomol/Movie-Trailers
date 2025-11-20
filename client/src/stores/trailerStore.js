@@ -55,7 +55,8 @@ export const useTrailerStore = defineStore('trailer', {
         this.loading = true;
         this.error = null;
 
-        const response = await fetch('/api');
+        const apiUrl = import.meta.env.VITE_API_URL || '/api';
+        const response = await fetch(apiUrl);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
