@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const getcontent = require("..//getContent")
+const getcontent = require("../getContent.improved")
 
 router.use( timelog = (req,res,next) => {
     console.log(`Time ${Date.now()}`);

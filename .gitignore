@@ -1,4 +1,12 @@
 /node_modules
 npm-debug.log
 .DS_Store
-/*.env
+/*.envclient/node_modules/
+
+# Client dependencies
+client/node_modules/
+client/.vite/
+client/dist/
+
+# Build output
+coverage/

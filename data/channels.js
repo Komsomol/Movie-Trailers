@@ -131,19 +131,9 @@ const channels = [
 		channelID: 'UCtlPYzQ188v4gHQ5VyikNiw',
 	},
 	{
-		name: 'Sony Pictures Classic',
-		channelURL: 'SonyPicturesClassics',
-		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
-	},
-	{
 		name: 'Blumhouse',
 		channelURL: 'BlumhouseProductions',
 		channelID: 'UCCEfOHkckMXnoZQAjUZsMig',
-	},
-	{
-		name: 'Momentum Pictures',
-		channelURL: 'UCElLRsuDWeYdOT3GgNZAUeQ',
-		channelID: 'UCElLRsuDWeYdOT3GgNZAUeQ',
 	},
 	{
 		name: 'HBO',
@@ -206,11 +196,6 @@ const channels = [
 		channelID: 'UCTdIZ-HAhxXqYTz7bQGftQA',
 	},
 	{
-		name: 'Gravitas Ventures',
-		channelURL: 'UCO7rKYuE7EMHYFcwP-obqhg',
-		channelID: 'UCO7rKYuE7EMHYFcwP-obqhg',
-	},
-	{
 		name: 'AXISPACIFIC FILMWORKS',
 		channelURL: 'UCTGQ6ucv6XMUSo98H6z2Zew',
 		channelID: 'UCTGQ6ucv6XMUSo98H6z2Zew',
@@ -234,8 +219,23 @@ const channels = [
 		name: 'Sony Pictures Classics',
 		channelURL: 'SonyPicturesClassics',
 		channelID: 'UCruD_lL-5fmllpKMSL-yCyQ',
+	},
+	{
+		name: 'Searchlight Pictures',
+		channelURL: 'SearchlightPictures',
+		channelID: 'UCor9rW6PgxSQ9vUPWQdnaYQ',
+	},
+	{
+		name: 'Miramax',
+		channelURL: 'miramax',
+		channelID: 'UCaVwpbqM8dkhQvbL8XileAA',
+	},
+	{
+		name: 'DreamWorks Animation',
+		channelURL: 'Dreamworks',
+		channelID: 'UCML7eumxGQaiFur_mNAebag',
 	}
-	
+
 ];
 // lets export all these channellsss
 module.exports = channels;

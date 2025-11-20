@@ -1,66 +1,42 @@
-const moment = require("moment");
+const moment = require("moment"); // Importing the moment library for date manipulation
 
+// Function to check if a given date falls within a specific range
 const checkDateRange = function (ISODate) {
-  // today
-  let date = moment().utc().format("YYYY-MM-DD");
-  // console.log("TODAY IS ",date);
-  // 8 days ago
-  let diff = moment(date).subtract(10, "d").format("YYYY-MM-DD");
-
-  // date we get from API
-  let dateFromAPI = moment(ISODate).utc().format("YYYY-MM-DD");
-
-  // range
-  let fallsinrange = moment(dateFromAPI).isBetween(diff, date, null, "(]");
-
-  return fallsinrange;
+  const today = moment().utc().format("YYYY-MM-DD"); // Get the current date in UTC format
+  const diff = moment(today).subtract(10, "days").format("YYYY-MM-DD"); // Subtract 10 days from the current date
+  return moment(ISODate).utc().isBetween(diff, today, null, "(]"); // Check and return if the date falls within the range
 };
 
+// Keywords to exclude and to search for in titles
+const excludedKeywords = ["blu-ray", "season", "episode", "marvel comics", "teaser trailer", "teaser", "red band"];
+const searchKeywords = ["official trailer"];
+
+// Function to filter and retrieve only specific videos based on title and date range
 const getTrailersOnly = (file, channelName) => {
-
-  // console.log(file.items[0].snippet.title);
   try {
-    let videos = [];
-    for (var i = 0; i < file.items.length; i++) {
-      // gets any results that have the word trailer, teaser or tv spot
-      // console.log(file.items[i].snippet.title, channelName);
-      if (
-        file.items[i].snippet.title.toLowerCase().indexOf("trailer") > -1 ||
-        file.items[i].snippet.title.toLowerCase().indexOf("teaser") > -1 ||
-        file.items[i].snippet.title.toLowerCase().indexOf("tv spot") > -1
-      ) {
-        if (checkDateRange(file.items[i].snippet.publishedAt)) {
-          if (file.items[i].snippet.title.toLowerCase().indexOf("blu-ray") > -1) {
-            // do nothing
-          } else if (
-            file.items[i].snippet.title.toLowerCase().indexOf("season") > -1
-          ) {
-            // do nothing
-          } else if (
-            file.items[i].snippet.title.toLowerCase().indexOf("episode") > -1
-          ) {
-            // do nothing
-          } else {
-            var obj = {};
-            obj.channel = channelName;
-            obj.name = file.items[i].snippet.title;
-            obj.date = moment(file.items[i].snippet.publishedAt)
-              .utc()
-              .format("LLLL");
-            obj.dateString = moment(file.items[i].snippet.publishedAt).utc();
-            obj.link = file.items[i].snippet.resourceId.videoId;
-            obj.thumbnail = file.items[i].snippet.thumbnails.high.url;
-            videos.push(obj);
-          }
-        }
-      }
-    }
-    // console.log(videos);
-    return(videos);
-  } catch (error) {
-    return(error);
-  }
+    return file.items.reduce((videos, item) => {
+      const title = item.snippet.title.toLowerCase(); // Convert title to lowercase
+      
+      const isTargeted = searchKeywords.some(keyword => title.includes(keyword));
+      const isExcluded = excludedKeywords.some(keyword => title.includes(keyword));
+      const isInDateRange = checkDateRange(item.snippet.publishedAt);
 
+      if (isTargeted && !isExcluded && isInDateRange) {
+        const obj = {
+          channel: channelName,
+          name: item.snippet.title,
+          date: moment(item.snippet.publishedAt).utc().format("LLLL"),
+          dateString: moment(item.snippet.publishedAt).utc(),
+          link: item.snippet.resourceId.videoId,
+          thumbnail: item.snippet.thumbnails.high.url,
+        };
+        videos.push(obj);
+      }
+      return videos;
+    }, []);
+  } catch (error) {
+    return error; // Return any error that occurs during the process
+  }
 };
 
-module.exports = getTrailersOnly;
+module.exports = getTrailersOnly; // Export the getTrailersOnly function as a module

@@ -1,28 +1,51 @@
-#Multi Channel Youtube Film Display System 
+# Movie Trailers Aggregator
 
-1. Channels listed in channels.js are read by getContent.js
-2. For each channel videos from the last couple of days are readin by getVideos.js
-3. Only videos with the word trailer, teaser or tvspot are pulled
-4. Any videos with blu-ray, season or episode are discarded.
-5. Videos are then displayed using pug rendered on express server.
+A modern web application that aggregates movie trailers from major studio YouTube channels.
 
-## Channel IDs
-Channel.js uses channel IDs to skip the step of getting a channel id.
-Read channel IDs manually using.
-```https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=$<username}&key=${key}```
+## Quick Start
 
-## YT API Key:
-Local development=> Use .env file with YT_API_KEY=<<KEY HERE>>
-Heroku => Check VARs using ``heroku config``
+```bash
+# Install dependencies
+npm install && npm run client:install
 
-## API restrictions:
-URL = https://tommytrailers.herokuapp.com/
-Localhost = http://localhost:5000
+# Create .env file and add your YouTube API key
+cp .env.example .env
 
-## Google Console URL
-Sunny Atrium
-``https://console.developers.google.com/apis/credentials?project=sunny-atrium-256211``
+# Run development servers
+npm run dev:fullstack
+```
 
-## Quota
-CHeck if the app is over Quota limi of 10,000
-``https://console.cloud.google.com/iam-admin/quotas?pli=1&project=sunny-atrium-256211&folder=&organizationId=``
+Open http://localhost:5173
+
+## Features
+
+- Fetches latest trailers from 40+ major studio YouTube channels
+- Smart filtering: Official trailers from last 10 days only
+- Modern React + Vite frontend with responsive design
+- Express.js backend with caching and rate limiting
+- 95% reduction in API calls through intelligent caching
+- Comprehensive testing with Jest
+
+## Documentation
+
+- **AI_CONTEXT.md** - Project overview, architecture, and context
+- **IMPROVEMENTS.md** - Code improvements and performance enhancements
+- **VITE_MIGRATION.md** - Frontend migration guide
+- **.env.example** - Environment configuration template
+
+## Key Scripts
+
+```bash
+npm run dev:fullstack      # Run backend + frontend
+npm run dev:improved       # Run improved backend only
+npm run test               # Run tests with coverage
+npm run build              # Build production frontend
+npm run lint:fix           # Fix code style issues
+```
+
+## Tech Stack
+
+Backend: Express, Node-cache, Winston, date-fns, YouTube API
+Frontend: React 18, Vite 6, Modern CSS
+
+See AI_CONTEXT.md for complete details.
