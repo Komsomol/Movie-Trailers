@@ -18,7 +18,7 @@ describe('API Endpoints', () => {
     getContent = require('../getContent');
 
     // Load app after mocks are set up
-    app = require('../app.improved');
+    app = require('../app');
   });
 
   describe('GET /health', () => {

@@ -10,3 +10,4 @@ client/dist/
 
 # Build output
 coverage/
+.env

@@ -1,4 +1,4 @@
-const getTrailersOnly = require('../filterTrailers.improved');
+const getTrailersOnly = require('../filterTrailers');
 const { sub } = require('date-fns');
 
 describe('filterTrailers', () => {
@@ -53,11 +53,11 @@ describe('filterTrailers', () => {
       expect(result[0].name).toBe('Movie Title - Official Trailer');
     });
 
-    test('should filter by date range (default 10 days)', () => {
+    test('should filter by date range (default 30 days)', () => {
       const mockData = {
         items: [
           createMockVideo('Recent Movie - Official Trailer', 5),
-          createMockVideo('Old Movie - Official Trailer', 15)
+          createMockVideo('Old Movie - Official Trailer', 35)
         ]
       };
 
@@ -148,7 +148,7 @@ describe('filterTrailers', () => {
   });
 
   describe('checkDateRange', () => {
-    const { checkDateRange } = require('../filterTrailers.improved');
+    const { checkDateRange } = require('../filterTrailers');
 
     test('should return true for date within range', () => {
       const fiveDaysAgo = sub(new Date(), { days: 5 }).toISOString();

@@ -1,4 +1,41 @@
-//jshint esversion:6
+/**
+ * @module data/channels
+ * @description YouTube channel configuration for movie trailer sources.
+ * Contains a curated list of major film studio and distributor channels
+ * to monitor for new movie trailer releases.
+ *
+ * Each channel entry includes:
+ * - name: Display name of the studio/distributor
+ * - channelURL: YouTube channel URL slug (for reference)
+ * - channelID: YouTube channel ID (used for API calls)
+ *
+ * @example
+ * const channels = require('./data/channels');
+ *
+ * // Iterate over all channels
+ * channels.forEach(channel => {
+ *   console.log(`Fetching from ${channel.name}...`);
+ *   const data = await fetchChannel(channel.channelID);
+ * });
+ *
+ * // Get channel count
+ * console.log(`Monitoring ${channels.length} channels`);
+ */
+
+/**
+ * @typedef {Object} ChannelConfig
+ * @property {string} name - Display name of the studio/distributor
+ * @property {string} channelURL - YouTube channel URL slug
+ * @property {string} channelID - YouTube channel ID for API calls
+ */
+
+/**
+ * List of YouTube channels to monitor for movie trailers.
+ * Includes major studios, streaming services, and independent distributors.
+ *
+ * @type {ChannelConfig[]}
+ * @constant
+ */
 const channels = [
 	{
 		name: '20th Century Fox',
@@ -237,5 +274,5 @@ const channels = [
 	}
 
 ];
-// lets export all these channellsss
+
 module.exports = channels;

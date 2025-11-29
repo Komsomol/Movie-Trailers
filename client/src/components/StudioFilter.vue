@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
   studios: {
@@ -133,10 +133,14 @@ const handleClickOutside = (e) => {
   }
 };
 
-// Add click outside listener
-if (typeof window !== 'undefined') {
+// Add click outside listener on mount, remove on unmount to prevent memory leaks
+onMounted(() => {
   window.addEventListener('click', handleClickOutside);
-}
+});
+
+onUnmounted(() => {
+  window.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <style scoped>
