@@ -34,16 +34,10 @@
         <p>Try selecting a different studio or view all trailers.</p>
       </div>
 
-      <template v-if="!store.loading && !store.error && store.paginatedTrailers.length > 0">
+      <template v-if="!store.loading && !store.error && store.filteredTrailers.length > 0">
         <div class="trailer-showcase">
-          <TrailerList :trailers="store.paginatedTrailers" @play="handlePlayVideo" />
+          <TrailerList :trailers="store.filteredTrailers" @play="handlePlayVideo" />
         </div>
-
-        <Pagination
-          :currentPage="store.currentPage"
-          :totalPages="store.totalPages"
-          :onPageChange="handlePageChange"
-        />
       </template>
     </main>
 
@@ -72,7 +66,6 @@ import Header from './components/Header.vue';
 import ErrorMessage from './components/ErrorMessage.vue';
 import Loading from './components/Loading.vue';
 import StudioFilter from './components/StudioFilter.vue';
-import Pagination from './components/Pagination.vue';
 
 // OPTIMIZATION: Lazy load VideoModal - only loaded when user clicks a trailer
 const VideoModal = defineAsyncComponent(() =>
@@ -94,11 +87,6 @@ const handleRefresh = () => {
 
 const handleFilterChange = (studio) => {
   store.setSelectedStudio(studio);
-};
-
-const handlePageChange = (page) => {
-  store.setCurrentPage(page);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 const handlePlayVideo = (trailer) => {

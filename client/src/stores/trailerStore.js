@@ -1,8 +1,7 @@
 /**
  * @module stores/trailerStore
  * @description Pinia store for managing trailer state in the Vue application.
- * Handles fetching trailer data from the API, filtering by studio,
- * and pagination of results.
+ * Handles fetching trailer data from the API and filtering by studio.
  *
  * @example
  * // In a Vue component
@@ -13,20 +12,14 @@
  * // Fetch trailers on mount
  * await store.fetchTrailers();
  *
- * // Access filtered and paginated data
- * const trailers = store.paginatedTrailers;
+ * // Access filtered data
+ * const trailers = store.filteredTrailers;
  *
  * // Filter by studio
  * store.setSelectedStudio('Warner Bros. Pictures');
  */
 
 import { defineStore } from 'pinia';
-
-/**
- * Number of trailers to display per page.
- * @constant {number}
- */
-const TRAILERS_PER_PAGE = 20;
 
 /**
  * @typedef {Object} Trailer
@@ -50,7 +43,6 @@ const TRAILERS_PER_PAGE = 20;
  * @property {boolean} loading - Whether data is being fetched
  * @property {string|null} error - Error message if fetch failed
  * @property {string} selectedStudio - Currently selected studio filter ('all' or studio name)
- * @property {number} currentPage - Current pagination page (1-indexed)
  */
 
 /**
@@ -69,14 +61,12 @@ const TRAILERS_PER_PAGE = 20;
  * const error = computed(() => store.error);
  *
  * // Computed getters
- * const trailers = computed(() => store.paginatedTrailers);
+ * const trailers = computed(() => store.filteredTrailers);
  * const studios = computed(() => store.studioCounts);
- * const pages = computed(() => store.totalPages);
  *
  * // Actions
  * await store.fetchTrailers();
  * store.setSelectedStudio('Netflix');
- * store.setCurrentPage(2);
  */
 export const useTrailerStore = defineStore('trailer', {
   /**
@@ -93,9 +83,7 @@ export const useTrailerStore = defineStore('trailer', {
     /** @type {string|null} Error message */
     error: null,
     /** @type {string} Selected studio filter */
-    selectedStudio: 'all',
-    /** @type {number} Current page number */
-    currentPage: 1
+    selectedStudio: 'all'
   }),
 
   getters: {
@@ -145,39 +133,6 @@ export const useTrailerStore = defineStore('trailer', {
       // Add 'all' option at the beginning
       studios.unshift({ name: 'all', count: state.trailers.length });
       return studios;
-    },
-
-    /**
-     * Returns the current page of filtered trailers.
-     * Uses filteredTrailers getter to avoid duplicate filtering.
-     *
-     * @this {Object} Store instance (required for accessing other getters)
-     * @param {TrailerState} state - Store state
-     * @returns {Trailer[]} Array of trailers for the current page
-     *
-     * @example
-     * const pageTrailers = store.paginatedTrailers;
-     * // Returns up to 20 trailers for the current page
-     */
-    paginatedTrailers(state) {
-      const filtered = this.filteredTrailers;
-      const startIndex = (state.currentPage - 1) * TRAILERS_PER_PAGE;
-      return filtered.slice(startIndex, startIndex + TRAILERS_PER_PAGE);
-    },
-
-    /**
-     * Returns the total number of pages based on filtered results.
-     *
-     * @this {Object} Store instance (required for accessing other getters)
-     * @param {TrailerState} state - Store state
-     * @returns {number} Total number of pages
-     *
-     * @example
-     * const pages = store.totalPages;
-     * // Use for pagination controls
-     */
-    totalPages(state) {
-      return Math.ceil(this.filteredTrailers.length / TRAILERS_PER_PAGE);
     }
   },
 
@@ -227,7 +182,7 @@ export const useTrailerStore = defineStore('trailer', {
     },
 
     /**
-     * Sets the selected studio filter and resets to page 1.
+     * Sets the selected studio filter.
      *
      * @param {string} studio - Studio name or 'all' for all studios
      * @returns {void}
@@ -241,21 +196,6 @@ export const useTrailerStore = defineStore('trailer', {
      */
     setSelectedStudio(studio) {
       this.selectedStudio = studio;
-      this.currentPage = 1; // Reset to first page when filter changes
-    },
-
-    /**
-     * Sets the current pagination page.
-     *
-     * @param {number} page - Page number (1-indexed)
-     * @returns {void}
-     *
-     * @example
-     * // Go to page 3
-     * store.setCurrentPage(3);
-     */
-    setCurrentPage(page) {
-      this.currentPage = page;
     }
   }
 });

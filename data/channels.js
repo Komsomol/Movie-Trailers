@@ -271,6 +271,41 @@ const channels = [
 		name: 'DreamWorks Animation',
 		channelURL: 'Dreamworks',
 		channelID: 'UCML7eumxGQaiFur_mNAebag',
+	},
+	{
+		name: 'Hulu',
+		channelURL: 'hulu',
+		channelID: 'UCE5mQnNl8Q4H2qcv4ikaXeA',
+	},
+	{
+		name: 'Studiocanal UK',
+		channelURL: 'studiocanalUK',
+		channelID: 'UCFSILgKCKo35QYGz8Kob51g',
+	},
+	{
+		name: 'Shout! Studios',
+		channelURL: 'ShoutStudios',
+		channelID: 'UCpHaAKu74UHvcYCi2g_PvBQ',
+	},
+	{
+		name: 'Vertical Entertainment',
+		channelURL: 'VerticalEntertainment',
+		channelID: 'UC_kr2hND7WcVRBV2AaazGrQ',
+	},
+	{
+		name: 'Saban Films',
+		channelURL: 'SabanFilms',
+		channelID: 'UCkaUErzjD9UUM8D-loIm5vA',
+	},
+	{
+		name: 'Well Go USA Entertainment',
+		channelURL: 'WellGoUSAEntertainment',
+		channelID: 'UCvE8nyjdQG0_rgx9u3oqadw',
+	},
+	{
+		name: 'GKIDS Films',
+		channelURL: 'GKIDSFilms',
+		channelID: 'UCb9ME2w6Y_4jChUVlWdltVg',
 	}
 
 ];

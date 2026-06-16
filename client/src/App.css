@@ -195,101 +195,6 @@ body {
   line-height: 1.6;
 }
 
-/* ===== PAGINATION ===== */
-.pagination {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-.pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.pagination-button {
-  font-family: 'Open Sans', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  background: white;
-  border: 1px solid var(--border-medium);
-  border-radius: 4px;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.pagination-button:hover:not(:disabled) {
-  background: var(--accent-primary);
-  color: white;
-  border-color: var(--accent-primary);
-}
-
-.pagination-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  background: var(--bg-secondary);
-}
-
-.pagination-button svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.page-numbers {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.page-number {
-  font-family: 'Open Sans', sans-serif;
-  min-width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  border: 1px solid var(--border-medium);
-  border-radius: 4px;
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.page-number:hover {
-  background: var(--bg-secondary);
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-}
-
-.page-number.active {
-  background: var(--accent-primary);
-  color: white;
-  border-color: var(--accent-primary);
-}
-
-.page-ellipsis {
-  color: var(--text-dim);
-  padding: 0 0.25rem;
-}
-
-.pagination-info {
-  color: var(--text-dim);
-  font-size: 0.875rem;
-}
-
 /* ===== FOOTER ===== */
 .footer {
   background: var(--bg-secondary);
@@ -338,35 +243,6 @@ body {
     padding: 1.5rem 1rem;
   }
 
-  .pagination {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-  }
-
-  .pagination-controls {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-
-  .pagination-button span {
-    display: none;
-  }
-
-  .pagination-button svg {
-    margin: 0;
-  }
-
-  .page-numbers {
-    gap: 0.375rem;
-  }
-
-  .page-number {
-    min-width: 2rem;
-    height: 2rem;
-    font-size: 0.8rem;
-  }
-
   .footer {
     padding: 1.5rem 1rem;
     margin-top: 1.5rem;
@@ -381,14 +257,5 @@ body {
 @media (max-width: 480px) {
   .main-content {
     padding: 1rem 0.75rem;
-  }
-
-  .pagination-controls {
-    width: 100%;
-  }
-
-  .page-numbers {
-    flex: 1;
-    justify-content: center;
   }
 }

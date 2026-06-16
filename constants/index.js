@@ -47,7 +47,7 @@ const EXCLUDED_KEYWORDS = [
  * const isTargeted = SEARCH_KEYWORDS.some(kw => title.toLowerCase().includes(kw));
  * // isTargeted === true (contains 'official trailer')
  */
-const SEARCH_KEYWORDS = ['official trailer'];
+const SEARCH_KEYWORDS = ['official trailer', 'final trailer'];
 
 /**
  * Cache key constants used with node-cache.
